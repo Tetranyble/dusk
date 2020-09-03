@@ -1,0 +1,60 @@
+{
+  "name": "dusk",
+  "version": "1.0.0",
+  "description": "a weather application",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tetranyble/dusk.git"
+  },
+  "keywords": [
+    "weather",
+    "app",
+    "dusk"
+  ],
+  "author": "Ekenekiso Leonard Ugbanawaji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tetranyble/dusk/issues"
+  },
+  "homepage": "https://github.com/Tetranyble/dusk#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.2.2",
+    "express": "^4.17.1",
+    "ghooks": "^2.0.4",
+    "jsdom": "^16.4.0",
+    "mocha": "^8.1.3",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": true,
+    "branches": 100,
+    "function": 0,
+    "lines": 0,
+    "statements": 0,
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "include": [
+      "src"
+    ]
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run test"
+    }
+  }
+}
