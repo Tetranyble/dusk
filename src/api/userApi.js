@@ -11,6 +11,7 @@ export function deleteUser(id) {
   return del(`users/${id}`);
 }
 
+
 function get(url) {
   return fetch(baseUrl + url).then(onSuccess, onError);
 }
