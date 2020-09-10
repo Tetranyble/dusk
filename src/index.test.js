@@ -28,9 +28,9 @@ describe('index.html', () => { // eslint-disable-line
       runScripts: 'dangerously',
     };
     JSDOM.fromFile('./dist/index.html', options).then(dom => {
-      const meta = dom.window.document.querySelector("meta[name='application-name']").getAttribute('content')
+      const meta = dom.window.document.querySelector('.city')
 
-      expect(meta).to.equal('Dusk')
+      expect(meta.innerHTML).to.equal('Lagos, NG')
       done()
     }).catch(done)
   })
