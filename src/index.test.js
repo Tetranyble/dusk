@@ -27,9 +27,10 @@ describe('index.html', () => { // eslint-disable-line
       resources: 'usable',
       runScripts: 'dangerously',
     };
-    JSDOM.fromFile('./src/index.html', options).then(dom => {
-      const h1 = dom.window.document.getElementsByTagName('h1')[0]
-      expect(h1.innerHTML).to.equal('Users')
+    JSDOM.fromFile('./dist/index.html', options).then(dom => {
+      const meta = dom.window.document.querySelector("meta[name='application-name']").getAttribute('content')
+
+      expect(meta).to.equal('Dusk')
       done()
     }).catch(done)
   })
