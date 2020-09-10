@@ -110,6 +110,7 @@
     "node": "12.14.1"
   },
   "dependencies": {
+    "express-http-to-https": "^1.1.4",
     "whatwg-fetch": "^3.4.0"
   }
 }
