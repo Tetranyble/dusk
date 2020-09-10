@@ -27,7 +27,7 @@ describe('index.html', () => { // eslint-disable-line
       resources: 'usable',
       runScripts: 'dangerously',
     };
-    JSDOM.fromFile('./dist/index.html', options).then(dom => {
+    JSDOM.fromFile('./src/index.html', options).then(dom => {
       const meta = dom.window.document.querySelector('.city')
 
       expect(meta.innerHTML).to.equal('Lagos, NG')
