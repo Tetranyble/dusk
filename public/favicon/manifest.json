@@ -1,0 +1,38 @@
+{
+  "name": "Dusk",
+  "short_name": "Dusk",
+  "icons": [{
+    "src": "/favicon/mstile-70x70.png",
+      "sizes": "70x70",
+      "type": "image/png"
+    },{
+      "src": "/favicon/mstile-310x310.png",
+      "sizes": "310x310",
+      "type": "image/png"
+    },
+     {
+      "src": "/favicon/mstile-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "/favicon/mstile-150x150.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    }, {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+  }, {
+      "src": "/favicon/images/icons/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }, {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+  }],
+  "theme_color": "#7eb0cc",
+  "background_color": "#7eb0cc",
+  "start_url": "/",
+  "display": "standalone"
+}
