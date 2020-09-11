@@ -4,9 +4,7 @@
   "description": "a weather application",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run clean-dist",
-    "start": "npm-run-all --parallel prod lint test",
-    "poststart": "npx babel-node server/server.js",
+    "start": "node server/server.js",
     "open:src": "npx babel-node buildScripts/srcServer.js",
     "lint": "esw webpack.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
