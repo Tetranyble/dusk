@@ -11,7 +11,7 @@
     "lint": "esw webpack.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
-    "localtunnel": "lt --port 8080 dusk",
+    "localtunnel": "lt --port 8080",
     "share": "npm-run-all --parallel open:src localtunnel",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
@@ -55,7 +55,7 @@
     "babel-loader": "8.1.0",
     "chai": "^4.2.0",
     "chalk": "^4.1.0",
-    "compression": "^1.7.4",
+
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "eslint": "^7.8.1",
@@ -111,6 +111,7 @@
   },
   "dependencies": {
     "express-http-to-https": "^1.1.4",
-    "whatwg-fetch": "^3.4.0"
+    "whatwg-fetch": "^3.4.0",
+    "compression": "^1.7.4"
   }
 }
