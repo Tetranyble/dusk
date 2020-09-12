@@ -1,9 +1,12 @@
 import './index.css';
-
+//import './widgitComponent/workerNotification'
 const api = {
   key: "10451c9691d994efc824cfee92009ea0",
-  base: "https://api.openweathermap.org/data/2.5/weather?"
+  base: "https://api.openweathermap.org/data/2.5/weather?",
+  onecall: "https://api.openweathermap.org/data/2.5/onecall?"
+
 }
+
 
 const setQuery = (evt) =>{
 
@@ -17,32 +20,74 @@ const dateBuilder = (now) => {
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday"];
 return `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
 }
-const displayResults = (weather) => {
+
+const displayResults = (w) => {
+
+  const weather = w.daily[0]
+  // eslint-disable-next-line no-console
+  console.log(w)
   let city = document.querySelector('.location .city');
-  city.innerText = `${weather.name}, ${weather.sys.country}`;
+  city.innerText = `${w.timezone}`;
 
   let now = new Date();
   let date = document.querySelector('.location .date');
   date.innerText = dateBuilder(now)
 
   let temp = document.querySelector('.current .temperature');
-  temp.innerHTML = `${Math.round(weather.main.temp)}<span>C</span>`;
-  console.log(weather)
+  temp.innerHTML = `${Math.round(weather.temp.max)}<span>C</span>`;
+
   let weather_el = document.querySelector('.current .weather');
   weather_el.innerText = weather.weather[0].description;
 
   let hilow = document.querySelector('.hi-low');
-  hilow.innerText = `${weather.main.temp_min}C / ${weather.main.temp_max} C`
+  hilow.innerText = `${weather.temp.min}C / ${weather.temp.max} C`
 }
 const searchbox = document.querySelector('.search-box');
 searchbox.addEventListener('keypress', setQuery);
 
 //&exclude={minutely,hourly}
-const getResults = (query) => {
-  fetch(`${api.base}q=${query}&units=metric&APPID=${api.key}`)
+const getResults = (query, onecall=true) => {
+  if(onecall){
+    fetch(`${api.base}q=${query}&units=metric&APPID=${api.key}`)
   .then( (weather) => {
     return weather.json()
-  }).then(displayResults)
+
+  }).then(weather =>{
+    fetch(`${api.onecall}lat=${weather.coord.lat}&lon=${weather.coord.lon}&units=metric&exclude=minutely,hourly&appid=${api.key}`)
+    .then(weather => {
+      return weather.json()
+    })
+    .then(displayResults)
+  })
+
+  }else{
+
+    fetch(`${api.onecall}lat=${query.coords.latitude}&lon=${query.coords.longitude}&units=metric&exclude=minutely,hourly&appid=${api.key}`)
+  .then( (weather) => {
+    return weather.json()
+  }).then(displayResults).catch((error) => console.log(error))
+  }
+
 }
 
+if(!navigator.geolocation) {
+  alert('Geolocation is not supported by your browser')
+} else {
+    navigator.geolocation.getCurrentPosition((location) => {
+      getResults(location, false)
 
+    }, (error) => {
+      // eslint-disable-next-line no-console
+      console.log(error)
+    });
+}
+
+const worker = new Worker('./worker/worker.js');
+worker.onerror = (error) => console.log(error);
+console.log(worker)
+worker.onmessage = (messageEvent) => {
+    console.log(messageEvent.data.message);
+};
+
+const message = document.querySelector('.search-box').value;
+worker.postMessage({ message: message });
