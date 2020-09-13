@@ -3,15 +3,15 @@ const CACHE_NAME = 'SITE_CONTENT_V1';
 const urlsToCache = [
     // global
     '/assets/css/index.css',
-    '/index.js',
+    '/main.bundle.js',
+    '/vendor.bundle.js',
 
 
     // /root
     '/index.html',
     '/worker/notfound.html',
     '/worker/offline.html',
-    '/worker/notfound.js',
-    '/worker/offline.js',
+
 
     // /about
     '/favicon/android-chrome-384x384.png',
