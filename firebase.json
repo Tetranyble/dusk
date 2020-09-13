@@ -1,8 +1,5 @@
 {
-  "emulators": {
-    "hosting": {
-      "public": "dist"
+  "hosting": {
+    "public": "dist"
     }
-
-  }
 }

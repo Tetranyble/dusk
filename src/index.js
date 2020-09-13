@@ -1,4 +1,4 @@
-import './index.css';
+import './assets/css/index.css';
 //import './widgitComponent/workerNotification'
 const api = {
   key: "10451c9691d994efc824cfee92009ea0",
@@ -82,12 +82,18 @@ if(!navigator.geolocation) {
     });
 }
 
-const worker = new Worker('./worker/worker.js');
-worker.onerror = (error) => console.log(error);
-console.log(worker)
-worker.onmessage = (messageEvent) => {
-    console.log(messageEvent.data.message);
-};
 
-const message = document.querySelector('.search-box').value;
-worker.postMessage({ message: message });
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+      try {
+          const registration = await navigator.serviceWorker.register('./worker/worker.js');
+          console.log('Service worker registration sucessful');
+          console.log(`Registered with scope: ${registration.scope}`);
+      } catch (e) {
+
+          console.log('Service worker registration failed');
+          console.log(e);
+      }
+  });
+}
+
