@@ -48,12 +48,12 @@
             "type": "image/png"
         }
     ],
-    "scope": "/",
+    "scope": ".",
     "serviceworker": {
       "scope": "/"
     },
     "theme_color": "#7eb0cc",
     "background_color": "#7eb0cc",
-    "start_url": "/",
+    "start_url": ".",
     "display": "standalone"
 }

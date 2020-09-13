@@ -24,8 +24,9 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
         new CopyWebpackPlugin({
           patterns: [
             {from: "src/favicon/", to: "favicon"},
-            {from: "src/worker/", to: "worker"},
-            {from: "src/assets/", to: "assets"}
+
+            {from: "src/assets/", to: "assets"},
+            {from: "src/worker/worker.js", to: "worker.js"}
           ]
         }),
         new HtmlWebpackPartialsPlugin({
